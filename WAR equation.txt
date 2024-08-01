@@ -1,0 +1,5 @@
+Kills * factor + ADR * factor + Positional Adjustment + HLTV Rank Adjustment + Replacement kills/adr
+/
+Kills per win
+
+Limitations: 
