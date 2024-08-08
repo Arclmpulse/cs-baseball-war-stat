@@ -22,7 +22,7 @@ plt.colorbar(scatter)
 # Adding titles and labels
 plt.title('Beautiful Scatter Plot', fontsize=18)
 plt.xlabel('HLTV Rating', fontsize=14)
-plt.ylabel('WAR', fontsize=14)
+plt.ylabel('SAR', fontsize=14)
 
 # Customizing ticks and spines
 plt.xticks(fontsize=12)
