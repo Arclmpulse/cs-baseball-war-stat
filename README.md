@@ -13,7 +13,7 @@ Before we dive into any math, some variables need to be understood first. Here a
 ### 1.1 Kills
 Quite possibly the most difficult variable to understand. Here's an example of an infamous kill(s):
 
-![](https://media1.tenor.com/m/lbVPssj-JJUAAAAC/happy-envyus.gif)
+![](/pictures/happy.gif)
 
 In all seriousness, **kills** are the basis of most of these following statistics. 
 
@@ -23,7 +23,7 @@ In all seriousness, **kills** are the basis of most of these following statistic
 ### 1.3 AWP%
 I've coined this as the percentage of kills that come from the One-Shot Sniper Rifle in the game. Here's it in action.
 
-![](https://media1.tenor.com/m/_Q-bZCgn24AAAAAC/coldzera.gif)
+![](/pictures/coldzera.gif)
 
 The **AWP** being the most expensive weapon in the game presents an interesting conundrum for teams: it is often worth it to save the gun in some rounds rather than try to go for plays that could be winnable - think like folding in a round of Poker. As a result of this, **AWP** players tend to play more risk averse than most other riflers.
 
@@ -64,7 +64,7 @@ HLTV rating is HLTV's own "all in one" statistic. By combining **KAST**, **KPR**
 HLTV rating has it's own issues. Again, HLTV rating tends to bias towards AWPers due to the presence of KAST and the heavy negative bias against high DPR. Conversely, this stat is generally biased against entry fraggers and site anchors. 
 
 ### 1.7 IGL
-It is no secret that taking on the **IGL** role drops players' stats, and for good reason - they have to focus on midround calls, look at radar half the time, and coordinate with their teammates. As such, being an IGL will often drop stats. Yet this is pretty unfair - why should a player's value only be measured by the amount of frags they're getting? As such, being an IGL or not will be another factor.
+It is no secret that taking on the **IGL** (In Game Leader) role drops players' stats, and for good reason - they have to focus on midround calls, look at radar half the time, and coordinate with their teammates. As such, being an IGL will often drop fragging output. Yet this is pretty unfair - why should a player's value only be measured by the amount of frags they're getting? As such, being an IGL or not will be another factor.
 
 
 ### 1.8 Win Rate
