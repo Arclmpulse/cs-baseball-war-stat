@@ -15,42 +15,55 @@ def calculate_war(row):
 def main():
     df = pd.read_csv('stats.csv')
     
-    # Calculate Weighted Kills Above Average (wKAA)
-    df['avgKill'] = df.apply(calculate_war, axis=1)
-    avgKillMap = df['avgKill'].mean()
+    # Calculate Weighted Kills Above Average (wKAA). This will cap out at around 1.5
+    avgKillMap = df['KPR'].mean()
     
-    # Calculate IGL adjustment factor (IGL)
-    IGL = 0.1 * df['IGL'] * df['avgKill']
-    df['wKAA'] = df['avgKill'] - avgKillMap
-    wKAAFactor = ((df['wKAA'] + IGL) / avgKillMap)
+    # deprecated but i'll keep it in
+    IGL = 0.15 * df['IGL'] * df['KPR']
     
-    # Calculate KAST/AWP% Adjustment Factor (kAWP)
-    KASTAvg = df['KAST'].mean()
-    wKAST = df['KAST'] - KASTAvg 
-    df['kAWP'] = wKAST * df['AWP%']
-    kAWPFactor = df['kAWP'] * 10
+    df['wKAA'] = df['KPR'] - avgKillMap
+    dummyOne = 4.3333
+    wKAAFactor = ((df['wKAA']) / avgKillMap) * dummyOne
+    df['wKAAFactor'] = wKAAFactor
     
-    # Calculate Impact/AWP% Adjustment Factor (iAWP)
-    ImpactAvg = df['Impact'].mean()
-    wImpact = df['Impact'] - ImpactAvg
-    df['iAWP'] = wImpact * df['AWP%']
-    iAWPFactor = df['iAWP'] * 10
-    
-    # Calculate Weighted ADR Above Average (wAAA)
+    # Calculate Weighted ADR Above Average (wAAA) (balanced around 1.75)
     avgADR = df['ADR'].mean()
     df['wAAA'] = df['ADR'] - avgADR 
-    wAAAFactor = df['wAAA'] / 10
+    dummyFour = 12.6666
+    wAAAFactor = df['wAAA'] / dummyFour
+    df['wAAAFactor'] = wAAAFactor
     
-    #Calculate Impact/ADR Adjustment Factor (iADR)
+    # Calculate KAST/AWP% Adjustment Factor (kAWP) (balanced around 0.25)
+    KASTAvg = df['KAST'].mean() 
+    wKAST = df['KAST'] - KASTAvg 
+    df['kAWP'] = wKAST * df['AWP%']
+    dummyTwo = 9.7
+    kAWPFactor = df['kAWP'] * dummyTwo
+    df['kAWPFactor'] = kAWPFactor
+    
+    # Calculate Impact/AWP% Adjustment Factor (iAWP) (balanced around 0.75)
+    ImpactAvg = df['Impact'].mean() 
+    wImpact = df['Impact'] - ImpactAvg
+    dummyThree = 6.3333
+    df['iAWP'] = wImpact * df['AWP%']
+    iAWPFactor = df['iAWP'] * dummyThree
+    df['iAWPFactor'] = iAWPFactor
+    
+    #Calculate Impact/ADR Adjustment Factor (iADR) (balanced around 0.5)
+    dummyFive = 0.9
     df['iADR'] = abs(wImpact) * (wAAAFactor)
+    iADRFactor = df['iADR'] / dummyFive
     
-    # Calculate Win/Loss + Sample Size Adjustment Factor (WL)
+    # Calculate Win/Loss + Sample Size Adjustment Factor (WL) (balanced around 1.75)
     SampleSize = (df['Loss'] + df['Win']).mean()
     print(SampleSize)
     df['WL'] = ((((df['Win']) / (df['Loss'] + df['Win'])) - 0.5 ) + (((df['Loss'] + df['Win'])/SampleSize) - 1) )
+    dummySix = 4.667
+    WLFactor = (df['WL'] * 0.19 + df['WL']*df['IGL']*0.05) * dummySix
+    df['WLFactor'] = WLFactor
     
     # Calculate SAR
-    df['SAR'] = wKAAFactor - kAWPFactor + iAWPFactor + wAAAFactor + df['iADR'] + df['WL']
+    df['SAR'] = wKAAFactor - kAWPFactor + iAWPFactor + wAAAFactor + iADRFactor + WLFactor + 2
     
     # debug
     #print(df)
