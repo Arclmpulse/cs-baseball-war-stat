@@ -498,14 +498,14 @@ The problem is when AWP players get passive. They want to survive, they want to 
 
 Sometimes the answer is yes, and Jame's teams like Virtus Pro/Outsiders/AVANGAR made this their entire identity. Which is fine, since all players on the team were looking to save the AWP if it went down. But for AWPers, I believe baiting/passive AWPs are not usually winning players, and as such I've created a factor to penalize this playstyle.
 
-**kAWP** is **KAST/AWP% Adjustment Factor.** What this metric does is take a player's relative to the average **KAST** rating as well as the amount of share of kills they have with the AWP, and compound them together. This was done in order to firstly see which player's are AWPers for one, and which players are more likely to save with the KAST rating. Non AWPers are nearly guaranteed to not get penalized at all by this factor, as most non AWP players have sub 1% AWP rates, and as such the amount they will get subtracted from is minimal.
+**kAWP** is **KAST/AWP% Adjustment Factor.** What this metric does is take a player's relative to the average **KAST** rating as well as the amount of share of kills they have with the AWP, and compound them together. This was done in order to firstly see which player's are AWPers for one, and which players are more likely to save with the KAST rating.
 
 Obviously this isn't a perfect way to measure it. A player like Zywoo would be the anthesis of this: he's a winning player with a high KAST rating and is an AWPer. The best AWPer, in fact. But because there was no access to player's saving data, this had to suffice instead.
 
 The equation below shows this off:
 
 ```math
-{kAWP} = ({KAST} - {Avg KAST}) * {AWP\%} * 9.7000
+{kAWP} = (({KAST} - {Avg KAST}) * {AWP\%} * 4.8500) + 0.1250
 ```
 Where KAST is % of rounds where a player got a kill, assist, survived or was traded, and AWP% refers to amount of kills done with the AWP. 9.7 was chosen as  the factor to round the kAWP stat to approximately 0.25.
 
@@ -516,45 +516,46 @@ The following shows off the list. Only AWPers were shown in the table below, tho
 
 |Player   |kAWPFactor |
 |---------|-----------|
-|sh1ro    |0.259220697|
-|device   |0.23446579 |
-|broky    |0.152884704|
-|hades    |0.151286488|
-|Zywoo    |0.140159704|
-|m0nesy   |0.133231337|
-|Jame     |0.116009339|
-|cadiaN   |0.112135691|
-|woxic    |0.095534596|
-|w0nderful|0.061488145|
-|torzsi   |0.03925226 |
-|SunPayus |0.035678308|
-|Boombl4  |0.027091327|
-|slaxz    |-1.86E-05  |
-|hallzerk |-0.019085136|
-|nicoodoz |-0.030261159|
-|r1nkle   |-0.087679794|
-|zorte    |-0.143531707|
-|alistair |-0.149743183|
-|910      |-0.157709484|
-|FalleN   |-0.181511688|
-|syrsoN   |-0.203044349|
-|afro     |-0.21532375|
+|sh1ro    |0.254610348|
+|device   |0.242232895|
+|broky    |0.201442352|
+|hades    |0.200643244|
+|Zywoo    |0.195079852|
+|m0nesy   |0.191615668|
+|Jame     |0.183004669|
+|cadiaN   |0.181067846|
+|woxic    |0.172767298|
+|w0nderful|0.155744073|
+|torzsi   |0.14462613 |
+|SunPayus |0.142839154|
+|Boombl4  |0.138545664|
+|slaxz    |0.124909781|
+|hallzerk |0.115457432|
+|nicoodoz |0.109869421|
+|r1nkle   |0.081160103|
+|zorte    |0.053234147|
+|alistair |0.050128408|
+|910      |0.046145258|
+|FalleN   |0.034244156|
+|syrsoN   |0.023477826|
+|afro     |0.017338125|
+
 
 </details>
 
 This seems to check out at first glance. **sh1ro** while a great player, is sometimes criticized by the community for being too passive and *baity.* 
 
-On the flipside, **Boombl4** was an AWP that was *part-time* since his team (**C9**) had no AWP, and he was also often entrying in sites when there was no AWP in play, which likely lowered his KAST. 
+On the flipside, **Boombl4** was an AWP that was *part-time* since his team (**C9**) had no AWP, and he was also often entrying in sites when there was no AWP in play, which likely lowered his KAST.
 
-Some surprises are that **Jame** is only middle of the pack here, but that is likely due to his relatively poor individual performance this year. **Device** is another name that feels off - while he is more of a passive AWPer, he's not someone who struggles or gets criticized for not finding impact in rounds.
+Some surprises are that **Jame** is only upper-middle of the pack here, but that is likely due to his relatively poor individual performance this year. **Device** is another name that feels off - while he is more of a passive AWPer, he's not someone who struggles or gets criticized for not finding impact in rounds. A lot of the worst AWPers in the Tier 1/1.5 scene like **Alistair, Syrson** and **afro** being so low is not a surprise either - their KAST is naturally pretty low.
 
-Players like **Monesy** and **Zywoo** being more middle of the pack here are also unsurprising, as both are more willing to scrap and go for clutches where they might fall flat on their face. 
+Players like **Hallzerk and r1nkle** are also both guys who are willing to scrap and combat AWP, so it does make sense that they have a low penalty score too.
 
 ### 2.4 iAWP (Impact/AWP% Adjustment Factor)
 Because it does feel a bit unfair that AWPers are the only position that have a penalizing stat, I've created another metric that rewards AWPers who find impact in rounds: coined **iAWP.** **Impact/AWP% Adjustment Factor**, this is calculated in an identical way to **2.3 kAWP,** but uses **HLTV Impact** to calculate this.
 
 ```math
-{iAWP} = ({Impact} - {Avg Impact}) * {AWP\%} * 6.7500
+{iAWP} = (({Impact} - {Avg Impact}) * {AWP\%} * 3.1667) + 0.3750
 ```
 
 <details>
@@ -562,29 +563,324 @@ Because it does feel a bit unfair that AWPers are the only position that have a 
 
 |Player   |iAWPFactor |
 |---------|-----------|
-|m0nesy   |0.743212307|
-|Zywoo    |0.678613263|
-|hades    |0.619740644|
-|device   |0.441909426|
-|r1nkle   |0.260963458|
-|sh1ro    |0.154850586|
-|zorte    |0.147697488|
-|broky    |0.120556888|
-|torzsi   |0.08512482 |
-|SunPayus |0.060019675|
-|Senzu    |0.055777261|
-|hallzerk |0.047688068|
-|w0nderful|0.047119192|
-|slaxz    |-0.022973065|
-|Jame     |-0.058288499|
-|Boombl4  |-0.059409717|
-|nicoodoz |-0.101879874|
-|FalleN   |-0.168442352|
-|woxic    |-0.331986205|
-|910      |-0.414187676|
-|afro     |-0.507194932|
-|cadiaN   |-0.563998076|
-|syrsoN   |-0.633237411|
-|alistair |-0.730721021|
+|m0nesy   |0.746612021|
+|Zywoo    |0.714311989|
+|hades    |0.684875215|
+|device   |0.595958202|
+|r1nkle   |0.505483789|
+|sh1ro    |0.452426516|
+|zorte    |0.44884991 |
+|broky    |0.435279396|
+|torzsi   |0.417563082|
+|SunPayus |0.405010311|
+|hallzerk |0.39884441 |
+|w0nderful|0.396108886|
+|slaxz    |0.363513286|
+|Jame     |0.345855291|
+|Boombl4  |0.345294673|
+|nicoodoz |0.324059259|
+|FalleN   |0.290777494|
+|woxic    |0.209004276|
+|910      |0.167902892|
+|afro     |0.12139853 |
+|cadiaN   |0.092996509|
+|syrsoN   |0.058376295|
+|alistair |0.00963372 |
 
 </details>
+
+Topping the list includes **m0nesy and Zywoo**, the two best AWPs in the scene currently, which is unsurprising. 
+
+Some more pleasant surprises include **Hades, r1nkle and zorte** having relatively high impact scores with the AWP. **Hades and Zorte** in particular, who have not had the most outstanding of years.
+
+Unsurprisingly, **Cadian and Jame** have relatively low impact scores - this is due to their playstyle. **Syrson and Alistair** at the bottom make sense too, for reasons previously explained.
+
+### 2.5 Impact/ADR Adjustment Factor (iADR)
+Entry Fragging is a thankless job in professional counter strike, as it is the role that often leads to the worst stats, is the hardest position to play, and draws the most criticism for those who are not good at it.
+
+As it was more difficult to access opening kill data, this was used to substitute instead. Using a combination of Impact and ADR, we can generally try to see who is taking more opening fights and winning them, or at the very least softening up enemies. This of course, deserves some points given.
+
+The following equation can be used to calculate this:
+
+```math
+{iADR} = \frac{({Impact} - {Avg Impact}) * ({{ADR} - {Avg ADR}})}{0.9}
+```
+
+Where all of these have been explained before in **2.2 and 2.4.** The following shows off who gets the most points from these:
+
+<details>
+<summary><b>iADR of Players</b></summary>
+
+|Player    |iADRFactor  |
+|----------|------------|
+|donk      |1.642222421 |
+|Zywoo     |0.73167459  |
+|xertioN   |0.436276163 |
+|stavn     |0.433172281 |
+|malbsMD   |0.396049807 |
+|INS       |0.390135032 |
+|XANTARES  |0.352670951 |
+|m0nesy    |0.348952946 |
+|dupreeh   |0.338736749 |
+|NiKo      |0.31764929  |
+|ELIGE     |0.307105561 |
+|hades     |0.269206476 |
+|KSCERATO  |0.266274037 |
+|device    |0.221176916 |
+|Twistzz   |0.19189347  |
+|Ax1le     |0.191146286 |
+|TeSeS     |0.141271797 |
+|Brollan   |0.12965719  |
+|Nertz     |0.112338913 |
+|JDC       |0.112338913 |
+|jL        |0.111809232 |
+|FL1T      |0.094470484 |
+|frozen    |0.090560566 |
+|magnojez  |0.082150915 |
+|Jimpphat  |0.064130234 |
+|Krimbo    |0.063810378 |
+|Senzu     |0.053949861 |
+|electronic|0.050957289 |
+|Maden     |0.049015124 |
+|bLitz     |0.046344967 |
+|FlameZ    |0.035957327 |
+|staehr    |0.03168917  |
+|alex      |0.029992655 |
+|YEKINDAR  |0.028979351 |
+|b1t       |0.026801772 |
+|Techno    |0.024708635 |
+|sh1ro     |0.024065085 |
+|yuurih    |0.022706802 |
+|broky     |0.022554086 |
+|zont1x    |0.02123628  |
+|tabseN    |0.017888493 |
+|s1n       |0.017060241 |
+|rain      |0.015191003 |
+|NAF       |0.012311485 |
+|jabbi     |0.01126957  |
+|ropz      |0.009317634 |
+|iM        |0.00927367  |
+|Grim      |0.00839517  |
+|w0nderful |0.005136014 |
+|sjuush    |0.004870358 |
+|Hobbit    |0.004815343 |
+|torzsi    |0.004488625 |
+|dycha     |0.004037453 |
+|Wicadia   |0.002171589 |
+|Spinx     |0.002032132 |
+|hallzerk  |0.001462789 |
+|maxster   |0.001405215 |
+|kairon    |0.000698158 |
+|KRIMZ     |3.80E-05    |
+|slaxz     |-0.003155466|
+|Goofy     |-0.004214014|
+|dexter    |-0.005370612|
+|vexite    |-0.006199215|
+|Swisher   |-0.007799774|
+|hunter    |-0.008316661|
+|Magisk    |-0.009143168|
+|volt      |-0.009497569|
+|Jame      |-0.010414915|
+|SunPayus  |-0.015233689|
+|isak      |-0.018009574|
+|norbert   |-0.020070725|
+|Kylar     |-0.026406895|
+|zorte     |-0.027019738|
+|JT        |-0.028418964|
+|Boombl4   |-0.030256216|
+|woxic     |-0.044990057|
+|apEX      |-0.048370294|
+|br0       |-0.052290448|
+|r1nkle    |-0.054551654|
+|nicoodoz  |-0.054805795|
+|mezii     |-0.05550564 |
+|Snax      |-0.061681417|
+|magixx    |-0.062510484|
+|matys     |-0.070341835|
+|mzinho    |-0.070506881|
+|FalleN    |-0.074549859|
+|prosus    |-0.075180615|
+|bodyy     |-0.083697738|
+|fame      |-0.100752454|
+|karrigan  |-0.104539547|
+|kyxsan    |-0.106127312|
+|siuhy     |-0.110289277|
+|reck      |-0.114905437|
+|nafany    |-0.150771517|
+|skullz    |-0.153389218|
+|chelo     |-0.155511782|
+|cadiaN    |-0.167826233|
+|MAJ3R     |-0.169268144|
+|910       |-0.173422432|
+|chopper   |-0.18727731 |
+|floppy    |-0.196366335|
+|afro      |-0.218977587|
+|nexa      |-0.234234713|
+|syrsoN    |-0.234322993|
+|s1ren     |-0.255675293|
+|Calyx     |-0.259083677|
+|Perfecto  |-0.259083677|
+|liazz     |-0.30890443 |
+|Hooxi     |-0.343369542|
+|AleksiB   |-0.395981997|
+|gla1ve    |-0.504026757|
+|alistair  |-0.509093275|
+|snappi    |-0.645689651|
+
+</details>
+
+No major surprises here, with **Donk** leading the way again, with an even bigger margin this time. **Malbs, Xantares and Xertion** being near the top make sense as well being the primary opener of their teams.
+
+Perhaps the biggest surprise is how impactful **Stavn** is in spite of his *group stage merchant* allegations. **JDC** being this high as well was surprising to see too, being on a relatively poor team.
+
+**Perfecto** having really rough stats is shocking - despite his poor year, I didn't think he was this *unimpactful.* 
+
+Unsurprisingly, guys like **nexa, liazz and snappi** are near the bottom.
+
+There does appear to be a notable bias about this metric - it seems as though it favours AWP and aggressive star riflers quite a bit, while it is biased against anchors and traditional support players as well as IGLs, likely due to the lack of engagements or tough positions they find themselves in.
+
+### 2.6 Win Loss Factor (WL)
+It's fine to be putting up huge stats, but does it really influence winning?
+
+The team's success based on winning maps, as well as current HLTV rank are two factors that will also be considered. Whether a player is an IGL or not will also influence this factor as well.
+
+The following equation can be used for this:
+
+```math
+{WL} = ((\frac{{\# of Map Wins}}{\# of Total Maps} - 0.5) + (\frac{\# of Total Maps}{Avg Total Maps}) - 1) * (0.19 + IGL*0.05) * 5.7500
+```
+
+Breaking this down, the first term calculates how much higher or lower your team is above .500 wins. The second term determines how many more or less maps you've played compared to the average. And the last term determines the responsibility towards the win - if you're an IGL, you naturally get a higher value compared to a regular player. The IGL variable is a binary value, meaning regular players get a weight of 0.19 versus 0.24 of the IGL.
+
+### 2.7 The RAR Equation
+We can finally breakdown the final equation - here it is:
+
+```math
+{RAR} = wKAA + wAAA + kAWP + iAWP + iADR + wL + 2.0000
+```
+
+Where 2.0000 is a variable meant to adjust the value to keep it more in line with traditional baseball WAR. Here's the results of the statistic:
+
+|Player    |RAR         |
+|----------|------------|
+|donk      |8.774517246 |
+|Zywoo     |7.182290391 |
+|m0nesy    |6.84209801  |
+|NiKo      |5.697100631 |
+|xertioN   |5.074728191 |
+|frozen    |4.817163747 |
+|broky     |4.775541871 |
+|INS       |4.535669659 |
+|hades     |4.418552851 |
+|stavn     |4.293142178 |
+|jL        |4.276353255 |
+|device    |4.273970434 |
+|Jimpphat  |4.131447718 |
+|ELIGE     |4.009680419 |
+|w0nderful |3.919368237 |
+|Brollan   |3.881272512 |
+|TeSeS     |3.833630714 |
+|ropz      |3.753695427 |
+|sh1ro     |3.746713103 |
+|b1t       |3.726176179 |
+|torzsi    |3.720070219 |
+|KSCERATO  |3.71565534  |
+|Spinx     |3.647133299 |
+|Twistzz   |3.645668371 |
+|malbsMD   |3.633555738 |
+|electronic|3.616688001 |
+|rain      |3.575909756 |
+|XANTARES  |3.538774535 |
+|Nertz     |3.487644485 |
+|hunter    |3.448534286 |
+|dupreeh   |3.375928525 |
+|FL1T      |3.370742867 |
+|FlameZ    |3.188969246 |
+|iM        |3.173265085 |
+|zont1x    |3.128276529 |
+|Maden     |2.839904904 |
+|Ax1le     |2.770564959 |
+|JDC       |2.761643341 |
+|magnojez  |2.750592485 |
+|NAF       |2.746804845 |
+|jabbi     |2.712626993 |
+|Krimbo    |2.645425737 |
+|hallzerk  |2.573017356 |
+|Jame      |2.437292406 |
+|yuurih    |2.38164372  |
+|bLitz     |2.251036412 |
+|nexa      |2.177688937 |
+|Grim      |2.150639103 |
+|br0       |2.14063434  |
+|sjuush    |2.095287477 |
+|staehr    |1.97849252  |
+|karrigan  |1.957544337 |
+|Senzu     |1.944191363 |
+|maxster   |1.943944653 |
+|apEX      |1.865944621 |
+|Wicadia   |1.842398408 |
+|alex      |1.823755585 |
+|Techno    |1.784288924 |
+|mezii     |1.760191199 |
+|YEKINDAR  |1.753756493 |
+|siuhy     |1.747004361 |
+|tabseN    |1.699534293 |
+|norbert   |1.693678117 |
+|s1n       |1.615481272 |
+|magixx    |1.500302718 |
+|slaxz     |1.477967885 |
+|SunPayus  |1.474462272 |
+|nicoodoz  |1.469531308 |
+|vexite    |1.468912429 |
+|Hobbit    |1.454703064 |
+|woxic     |1.435645336 |
+|zorte     |1.410430237 |
+|Magisk    |1.316263897 |
+|dexter    |1.273963268 |
+|volt      |1.255541451 |
+|Kylar     |1.197368474 |
+|Hooxi     |1.185719481 |
+|JT        |1.169074726 |
+|kairon    |1.100756866 |
+|Goofy     |1.094998972 |
+|dycha     |1.077982952 |
+|r1nkle    |1.072669868 |
+|isak      |1.04203986  |
+|kyxsan    |1.024155691 |
+|Swisher   |0.971444538 |
+|fame      |0.939231933 |
+|KRIMZ     |0.719043171 |
+|FalleN    |0.644909822 |
+|Boombl4   |0.49851938  |
+|chopper   |0.434235148 |
+|AleksiB   |0.365394451 |
+|reck      |0.345901195 |
+|skullz    |0.324806055 |
+|Snax      |0.3118593   |
+|mzinho    |0.291850961 |
+|cadiaN    |0.266161791 |
+|910       |0.167594657 |
+|prosus    |0.014351952 |
+|floppy    |0.002726643 |
+|matys     |-0.027054201|
+|Calyx     |-0.098462043|
+|syrsoN    |-0.12151842 |
+|liazz     |-0.208001817|
+|Perfecto  |-0.250221894|
+|MAJ3R     |-0.293255559|
+|chelo     |-0.483642197|
+|afro      |-0.521536724|
+|s1ren     |-0.530065125|
+|bodyy     |-0.839274722|
+|nafany    |-1.273144445|
+|alistair  |-1.286098755|
+|snappi    |-1.878370877|
+|gla1ve    |-1.966553343|
+
+Donk is unsurprisingly the #1 player on the list, and for good reason - his Katowice run was historic and inflated his statistics. More in line was **Zywoo and m0nesy**, with superstar numbers 
+
+## 3.0 Visualizing the Statistic 
+
+
+
+## 4.0 Limitations and Conclusions
